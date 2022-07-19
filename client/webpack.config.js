@@ -23,8 +23,8 @@ module.exports = () => {
       
       //Added webpack plugin that will generate the HTML
       new HtmlWebpackPlugin({
-        template: "./index.html", 
-        title: "JATE"
+        template: './index.html', 
+        title: 'JATE'
       }),
     ],
 
@@ -32,9 +32,19 @@ module.exports = () => {
     module: {
       rules: [
         {
+          //CSS Loader
           test: /\.css$/i,
-          use: ["style-loader", "css-loader"]
+          use: ['style-loader', 'css-loader']
         },
+        {
+          //Babel loader
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+          }
+        }
       ],
     },
   };
