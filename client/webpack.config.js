@@ -17,8 +17,6 @@ module.exports = () => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
-
-    //Added and configure workbox plugins for a service worker and manifest file
     plugins: [
       
       //Added webpack plugin that will generate the HTML
