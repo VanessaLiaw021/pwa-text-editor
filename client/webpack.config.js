@@ -17,10 +17,13 @@ module.exports = () => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
+
+    //Added and configure workbox plugins for a service worker and manifest file
     plugins: [
       
     ],
 
+    //CSS loaders and babel added to webpack
     module: {
       rules: [
         {
