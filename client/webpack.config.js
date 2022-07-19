@@ -21,6 +21,11 @@ module.exports = () => {
     //Added and configure workbox plugins for a service worker and manifest file
     plugins: [
       
+      //Added webpack plugin that will generate the HTML
+      new HtmlWebpackPlugin({
+        template: "./index.html", 
+        title: "JATE"
+      }),
     ],
 
     //CSS loaders and babel added to webpack
