@@ -17,7 +17,28 @@ const initdb = async () =>
 export const putDb = async (id, content) => {
   
   //Display message to know that the content is updated 
-  
+  console.log("PUT (Update) to the database", id);
+
+  //Create the connection to the database and the version we want to use 
+  const jateDB = await openDB('jate', 1);
+
+  //Create a transaction and specify the database and data privileges 
+  const tx = jateDB.transaction('jate', 'readwrite');
+
+  //Open up the object store
+  const store = tx.objectStore('jate');
+
+  //Update the data from the database 
+  const request = store.put({ id: id, content: content });
+
+  //Confirm the request 
+  const result = await request;
+
+  //Log to know we successfully request the data 
+  console.log("Content is updated", result);
+
+  //Return the result
+  return result;
 };
 
 // TODO: Add logic for a method that gets all the content from the database
@@ -32,7 +53,7 @@ export const getDb = async () => {
   //Create a new transaction and specify the database and data privileges 
   const tx = jateDB.transaction('jate', 'readonly');
 
-  //Open up object store 
+  //Open up the object store 
   const store = tx.objectStore('jate');
 
   //Get all method to get all data in the database 
@@ -42,7 +63,7 @@ export const getDb = async () => {
   const result = await request;
 
   //Log to know we successfully request the data 
-  console.log('result.value', result);
+  console.log('Getting data from database', result);
 
   //Return the result 
   return result;
