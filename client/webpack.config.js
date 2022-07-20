@@ -24,6 +24,30 @@ module.exports = () => {
         template: './index.html', 
         title: 'JATE'
       }),
+
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js'
+      }),
+
+      new WebpackPwaManifest({
+        fingerPrints: false,
+        inject: true, 
+        name: 'Another Text Editor',
+        short_name: 'JATE',
+        description: 'Just Another Text Editor!',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: '/',
+        publicPath: '/',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      })
     ],
 
     //CSS loaders and babel added to webpack
